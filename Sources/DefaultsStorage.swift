@@ -37,7 +37,6 @@ extension DefaultsStorage: IStorage {
 	public func fetch<T: Codable>(for key: IObjectKey) -> T? {
 
 		guard let any = self.defaults.value(forKey: key.stringID) else {
-			assertionFailure("Failed to load object from defaults")
 			return nil
 		}
 
