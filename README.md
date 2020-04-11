@@ -1,7 +1,10 @@
 # VCDefaultsStorage
-User defaults storage with Codable support.
+User defaults storage with Codable support
 
-## How to get started
+## Installation
+Install with SPM 📦
+
+## Usage
 ```swift
 enum Key: IObjectKey, String {
     case bar
@@ -18,6 +21,3 @@ storage.save(data, for: Key.bar)
 
 let fetchedData: SomeData?  = self.storage.fetch(for: Key.bar)
 ```
-
-## Installation
-For now VCDefaultsStorage supports installation through SPM 📦
