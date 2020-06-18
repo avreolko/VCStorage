@@ -7,10 +7,10 @@
 //
 
 public protocol IObjectKey {
-	var stringID: String { get }
+    var stringID: String { get }
 }
 
 public protocol IStorage {
-	func fetch<T: Codable>(for key: IObjectKey) -> T?
-	func save<T: Codable>(_ data: T, for key: IObjectKey)
+    func fetch<T: Codable>(for key: IObjectKey) -> T?
+    func save<T: Codable>(_ data: T, for key: IObjectKey)
 }

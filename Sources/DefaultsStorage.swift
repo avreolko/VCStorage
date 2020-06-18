@@ -9,44 +9,44 @@ import Foundation
 
 public struct DefaultsStorage {
 
-	private let defaults: UserDefaults
-	private let encoder: JSONEncoder
-	private let decoder: JSONDecoder
+    private let defaults: UserDefaults
+    private let encoder: JSONEncoder
+    private let decoder: JSONDecoder
 
-	public init(_ defaults: UserDefaults,
-		 encoder: JSONEncoder = JSONEncoder(),
-		 decoder: JSONDecoder = JSONDecoder()) {
+    public init(_ defaults: UserDefaults,
+                encoder: JSONEncoder = JSONEncoder(),
+                decoder: JSONDecoder = JSONDecoder()) {
 
-		self.defaults = defaults
-		self.encoder = encoder
-		self.decoder = decoder
-	}
+        self.defaults = defaults
+        self.encoder = encoder
+        self.decoder = decoder
+    }
 }
 
 extension DefaultsStorage: IStorage {
 
-	public func save<T: Codable>(_ object: T, for key: IObjectKey) {
+    public func save<T: Codable>(_ object: T, for key: IObjectKey) {
 
-		if let encodedData = try? self.encoder.encode(object) {
-			self.defaults.set(encodedData, forKey: key.stringID)
-		} else {
-			self.defaults.set(object, forKey: key.stringID)
-		}
-	}
+        if let encodedData = try? self.encoder.encode(object) {
+            self.defaults.set(encodedData, forKey: key.stringID)
+        } else {
+            self.defaults.set(object, forKey: key.stringID)
+        }
+    }
 
-	public func fetch<T: Codable>(for key: IObjectKey) -> T? {
+    public func fetch<T: Codable>(for key: IObjectKey) -> T? {
 
-		guard let any = self.defaults.value(forKey: key.stringID) else {
-			return nil
-		}
+        guard let any = self.defaults.value(forKey: key.stringID) else {
+            return nil
+        }
 
-		switch any {
-		case let data as Data:
-			return try? self.decoder.decode(T.self, from: data)
-		case let typedObject as T:
-			return typedObject
-		default:
-			return nil
-		}
-	}
+        switch any {
+        case let data as Data:
+            return try? self.decoder.decode(T.self, from: data)
+        case let typedObject as T:
+            return typedObject
+        default:
+            return nil
+        }
+    }
 }

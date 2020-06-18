@@ -11,37 +11,37 @@ import XCTest
 
 class VCDefaultsStorageTests: XCTestCase {
 
-	let storage = DefaultsStorage(UserDefaults.standard)
+    let storage = DefaultsStorage(UserDefaults.standard)
 
-	enum StorageKey: String, IObjectKey {
-		case string
-		case object
+    enum StorageKey: String, IObjectKey {
+        case string
+        case object
 
-		var stringID: String {
-			return self.rawValue
-		}
-	}
+        var stringID: String {
+            return self.rawValue
+        }
+    }
 
-	struct SomeStruct: Codable {
-		let string: String
-		let array: [String]
-	}
+    struct SomeStruct: Codable {
+        let string: String
+        let array: [String]
+    }
 
-	func testGenericTypeSavingAndFetching() {
-		let string = "test"
-		self.storage.save(string, for: StorageKey.string)
+    func testGenericTypeSavingAndFetching() {
+        let string = "test"
+        self.storage.save(string, for: StorageKey.string)
 
-		let loadedString: String! = self.storage.fetch(for: StorageKey.string)
-		XCTAssert(loadedString == "test")
-	}
+        let loadedString: String! = self.storage.fetch(for: StorageKey.string)
+        XCTAssert(loadedString == "test")
+    }
 
-	func testComplexObjectSavingAndFetching() {
-		let object = SomeStruct(string: "string", array: ["1", "2"])
-		self.storage.save(object, for: StorageKey.object)
+    func testComplexObjectSavingAndFetching() {
+        let object = SomeStruct(string: "string", array: ["1", "2"])
+        self.storage.save(object, for: StorageKey.object)
 
-		let fetchedObject: SomeStruct! = self.storage.fetch(for: StorageKey.object)
+        let fetchedObject: SomeStruct! = self.storage.fetch(for: StorageKey.object)
 
-		XCTAssert(fetchedObject.string == "string")
-		XCTAssert(fetchedObject.array == ["1", "2"])
-	}
+        XCTAssert(fetchedObject.string == "string")
+        XCTAssert(fetchedObject.array == ["1", "2"])
+    }
 }
