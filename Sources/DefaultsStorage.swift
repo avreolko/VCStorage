@@ -49,4 +49,8 @@ extension DefaultsStorage: IStorage {
             return nil
         }
     }
+
+    public func remove(for key: IObjectKey) {
+        self.defaults.removeObject(forKey: key.stringID)
+    }
 }

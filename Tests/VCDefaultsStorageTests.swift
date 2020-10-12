@@ -16,6 +16,7 @@ class VCDefaultsStorageTests: XCTestCase {
     enum StorageKey: String, IObjectKey {
         case string
         case object
+        case toRemove
 
         var stringID: String {
             return self.rawValue
@@ -43,5 +44,18 @@ class VCDefaultsStorageTests: XCTestCase {
 
         XCTAssert(fetchedObject.string == "string")
         XCTAssert(fetchedObject.array == ["1", "2"])
+    }
+
+    func testRemovingObjects() {
+        let object = "to remove"
+        self.storage.save(object, for: StorageKey.toRemove)
+
+        XCTAssertEqual(self.storage.fetch(for: StorageKey.toRemove)!, "to remove")
+
+        self.storage.remove(for: StorageKey.toRemove)
+
+        let fetched: String? = self.storage.fetch(for: StorageKey.toRemove)
+
+        XCTAssertNil(fetched)
     }
 }
