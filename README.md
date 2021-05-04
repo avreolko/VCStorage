@@ -1,4 +1,5 @@
-# VCDefaultsStorage
+[![Tests](https://github.com/avreolko/VCStorage/workflows/Tests/badge.svg?branch=master)](https://github.com/avreolko/VCStorage/actions/workflows/tests.yml)
+# VCStorage
 `IStorage` interface for your objects
 
 ## Features
