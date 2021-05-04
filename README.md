@@ -1,5 +1,9 @@
 # VCDefaultsStorage
-User defaults storage with Codable support
+`IStorage` interface for your objects
+
+## Features
+- Codable support
+- User defaults implementation included
 
 ## Installation
 Install with SPM 📦
@@ -21,3 +25,6 @@ storage.save(data, for: Key.bar)
 
 let fetchedData: SomeData?  = self.storage.fetch(for: Key.bar)
 ```
+
+## License
+This project is released under the [MIT license](https://en.wikipedia.org/wiki/MIT_License).
