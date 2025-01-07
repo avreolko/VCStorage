@@ -2,7 +2,7 @@
 //  IStorage.swift
 //  VCStorage
 //
-//  Created by Valentin Cherepyanko on 01/07/2018.
+//  Created by Valentin Cherepyanko on 01/01/2025.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-public protocol IStorage {
-    func fetch<T: Codable>(for key: IObjectKey) -> T?
-    func save<T: Codable>(_ data: T, for key: IObjectKey)
-    func remove(for key: IObjectKey)
+import Foundation
+
+public protocol IObjectKey {
+    var stringID: String { get }
 }

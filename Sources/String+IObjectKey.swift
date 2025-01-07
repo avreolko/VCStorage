@@ -23,8 +23,10 @@
 //  THE SOFTWARE.
 //
 
-public protocol IStorage {
-    func fetch<T: Codable>(for key: IObjectKey) -> T?
-    func save<T: Codable>(_ data: T, for key: IObjectKey)
-    func remove(for key: IObjectKey)
+import Foundation
+
+extension String: IObjectKey {
+    public var stringID: String {
+        self
+    }
 }
